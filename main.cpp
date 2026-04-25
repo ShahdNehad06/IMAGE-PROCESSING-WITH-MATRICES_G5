@@ -149,7 +149,15 @@ Image convertToGrayscale(const Image& input) {
     int height = input.getHeight();
     int width = input.getWidth();
     Image output(width, height, 1); // Single channel for grayscale
-
+    for (int  j=0;j<height;j++) {
+        for (int  i=0;i<width;i++) {
+            int red = input(j,i,0);
+            int green = input(j,i,1);
+            int blue = input(j,i,2);
+            int gray = 0.299*red+0.587*green+0.114*blue;
+            output(j,i,0) = gray;
+        }
+    }
     // TODO: Implement this function
     // For each pixel:
     //   Get R, G, B values from input image
@@ -234,7 +242,15 @@ Image adjustBrightness(const Image& input, int value) {
     int width = input.getWidth();
     int channels = input.getChannels();
     Image output(width, height, channels);
-
+    for (int j=0;j<height;j++) {
+        for (int i =0; i<width; i++) {
+            for (int c = 0; c < channels; c++) {
+                int brightness = input(j,i,c)+value ;
+                brightness=max(0,min(255,brightness));
+                output(j,i,c)=brightness;
+            }
+        }
+    }
     // TODO: Implement this function
     // For each pixel and each channel:
     //   new_value = input(y, x, c) + value
