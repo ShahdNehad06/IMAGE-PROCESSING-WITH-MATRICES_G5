@@ -160,6 +160,7 @@ Image convertToGrayscale(const Image& input) {
     }
     // TODO: Implement this function
     // For each pixel:
+
     //   Get R, G, B values from input image
     //   Calculate gray = 0.299*R + 0.587*G + 0.114*B
     //   Set output(y, x, 0) = gray
